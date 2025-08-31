@@ -1,18 +1,21 @@
 package com.storefront.backend.service;
 
+import com.storefront.backend.entity.Category;
+import java.util.List;
+import java.util.Optional;
 
-import org.springframework.stereotype.Service;
-
-import com.storefront.backend.repository.CategoryRepository;
-
-import lombok.RequiredArgsConstructor;
-
-@Service
-@RequiredArgsConstructor
-    public class CategoryService {
-
-    private final CategoryRepository categoryRepository;
-    }
+public interface CategoryService {
+    
+    List<Category> getAllCategories();
+    
+    Optional<Category> getCategoryById(Long id);
+    
+    Optional<Category> getCategoryByName(String name);
+    
+    Category saveCategory(Category category);
+    
+    void deleteCategory(Long id);
+}
 
 
 

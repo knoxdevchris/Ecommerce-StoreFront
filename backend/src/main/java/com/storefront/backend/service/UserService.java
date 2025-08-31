@@ -1,31 +1,24 @@
 package com.storefront.backend.service;
 
-import org.springframework.stereotype.Service;
-
 import com.storefront.backend.entity.User;
-import com.storefront.backend.repository.UserRepository;
+import java.util.List;
+import java.util.Optional;
 
-@Service
-public class UserService {
-
-    private final UserRepository userRepository;
-
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-    public User createUser(User user) {
-        return userRepository.save(user);
-    }
-    public User loginUser(User user) {
-        return userRepository.findByEmail(user.getEmail()).orElseThrow(() -> new RuntimeException("User not found"));
-    }
-    public User updateUserProfile(Long userId, User updates) {
-        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
-        user.setEmail(updates.getEmail());
-        user.setPassword(updates.getPassword());
-        return userRepository.save(user);
-    }
-
-
-
+public interface UserService {
+    
+    List<User> getAllUsers();
+    
+    Optional<User> getUserById(Long id);
+    
+    Optional<User> getUserByEmail(String email);
+    
+    Optional<User> getUserByUsername(String username);
+    
+    List<User> getActiveUsers();
+    
+    User saveUser(User user);
+    
+    void deleteUser(Long id);
+    
+    boolean validatePassword(User user, String password);
 }

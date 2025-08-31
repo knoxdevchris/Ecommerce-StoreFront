@@ -1,36 +1,24 @@
 package com.storefront.backend.service;
 
-import java.util.List;
-
-import java.util.stream.Collectors;
-
-import org.springframework.stereotype.Service;
-
 import com.storefront.backend.entity.Product;
-import com.storefront.backend.repository.ProductRepository;
+import java.util.List;
+import java.util.Optional;
 
-import lombok.RequiredArgsConstructor;
-
-@Service
-@RequiredArgsConstructor
-public class ProductService {
-
-    private final ProductRepository productRepository;
-
-    public Product createProduct(Product product) {
-        return productRepository.save(product);
-    }
+public interface ProductService {
     
-    public List<Product> searchProducts(String query) {
-        return productRepository.findAll().stream()
-            .filter(p -> p.getName().toLowerCase().contains(query.toLowerCase()))
-            .collect(Collectors.toList());
-    }
+    List<Product> getAllProducts();
     
-    public void updateStock(Long productId, int quantity) {
-        Product product = productRepository.findById(productId)
-            .orElseThrow(() -> new RuntimeException("Product not found"));
-        product.setStockQuantity(quantity);
-        productRepository.save(product);
-    }
+    Optional<Product> getProductById(Long id);
+    
+    List<Product> getProductsByCategory(String category);
+    
+    List<Product> getProductsByBrand(String brand);
+    
+    List<Product> searchProducts(String query);
+    
+    List<Product> getActiveProducts();
+    
+    Product saveProduct(Product product);
+    
+    void deleteProduct(Long id);
 }
