@@ -94,6 +94,17 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
     }
+    
+    // Update user password
+    @PatchMapping("/{id}/password")
+    public ResponseEntity<String> updateUserPassword(@PathVariable Long id, @RequestParam String newPassword) {
+        boolean updated = userService.updatePassword(id, newPassword);
+        if (updated) {
+            return ResponseEntity.ok("Password updated successfully");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
     // Get active users only
     @GetMapping("/active")

@@ -21,4 +21,6 @@ public interface UserService {
     void deleteUser(Long id);
     
     boolean validatePassword(User user, String password);
+    
+    boolean updatePassword(Long userId, String newPassword);
 }

@@ -1,6 +1,7 @@
 package com.storefront.backend.entity;
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDateTime;
 
 @Entity
@@ -24,9 +25,11 @@ public class User {
     private Boolean isActive = true;
 
     @Column(name = "created_at")
+    @JsonFormat(pattern = "MMM dd, yyyy 'at' HH:mm:ss", timezone = "UTC")
     private LocalDateTime createdAt;
 
     @Column(name = "updated_at")
+    @JsonFormat(pattern = "MMM dd, yyyy 'at' HH:mm:ss", timezone = "UTC")
     private LocalDateTime updatedAt;
 
     // Default constructor
