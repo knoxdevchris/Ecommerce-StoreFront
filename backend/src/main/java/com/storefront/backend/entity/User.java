@@ -24,6 +24,9 @@ public class User {
     @Column(nullable = false)
     private Boolean isActive = true;
 
+    @Column(name = "is_admin")
+    private Boolean isAdmin = false;
+
     @Column(name = "created_at")
     @JsonFormat(pattern = "MMM dd, yyyy 'at' HH:mm:ss", timezone = "UTC")
     private LocalDateTime createdAt;
@@ -56,4 +59,7 @@ public class User {
 
     public LocalDateTime getUpdatedAt() { return updatedAt; }
     public void setUpdatedAt(LocalDateTime updatedAt) { this.updatedAt = updatedAt; }
+    
+    public Boolean getIsAdmin() { return isAdmin; }
+    public void setIsAdmin(Boolean isAdmin) { this.isAdmin = isAdmin; }
 }

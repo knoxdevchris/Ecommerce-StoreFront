@@ -80,4 +80,24 @@ public class UserServiceImpl implements UserService {
         }
         return false;
     }
+    
+    @Override
+    public List<User> getAllAdmins() {
+        return userRepository.findByIsAdminTrue();
+    }
+    
+    @Override
+    public Optional<User> getAdminByEmail(String email) {
+        Optional<User> user = userRepository.findByEmail(email);
+        if (user.isPresent() && user.get().getIsAdmin()) {
+            return user;
+        }
+        return Optional.empty();
+    }
+    
+    @Override
+    public boolean isAdmin(Long userId) {
+        Optional<User> user = getUserById(userId);
+        return user.isPresent() && user.get().getIsAdmin();
+    }
 }

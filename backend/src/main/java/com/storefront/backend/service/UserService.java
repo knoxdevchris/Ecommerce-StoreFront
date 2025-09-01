@@ -5,22 +5,32 @@ import java.util.List;
 import java.util.Optional;
 
 public interface UserService {
-    
+
     List<User> getAllUsers();
-    
+
     Optional<User> getUserById(Long id);
-    
+
     Optional<User> getUserByEmail(String email);
-    
+
     Optional<User> getUserByUsername(String username);
-    
+
     List<User> getActiveUsers();
-    
+
     User saveUser(User user);
-    
+
     void deleteUser(Long id);
-    
+
     boolean validatePassword(User user, String password);
-    
+
     boolean updatePassword(Long userId, String newPassword);
+
+    // Get all admins
+    List<User> getAllAdmins();
+
+    // Get admin by email
+    Optional<User> getAdminByEmail(String email);
+
+    // Check if user is admin
+    boolean isAdmin(Long userId);
+
 }
