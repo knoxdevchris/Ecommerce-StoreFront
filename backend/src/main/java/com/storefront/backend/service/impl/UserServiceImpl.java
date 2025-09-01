@@ -59,45 +59,39 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(Long id) {
-        userRepository.deleteById(id);
+    public void deleteUser(Long userId) {
+        userRepository.deleteById(userId);
+    }
+
+    @Override
+    public User updateUser(User user) {
+        if (user.getId() == null) {
+            throw new IllegalArgumentException("User ID cannot be null for update");
+        }
+        
+        Optional<User> existingUser = userRepository.findById(user.getId());
+        if (existingUser.isEmpty()) {
+            throw new IllegalArgumentException("User not found with ID: " + user.getId());
+        }
+        
+        User existing = existingUser.get();
+        
+        // Update fields
+        if (user.getUsername() != null) {
+            existing.setUsername(user.getUsername());
+        }
+        if (user.getEmail() != null) {
+            existing.setEmail(user.getEmail());
+        }
+        if (user.getPassword() != null) {
+            existing.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
+        
+        return userRepository.save(existing);
     }
 
     @Override
     public boolean validatePassword(User user, String password) {
         return passwordEncoder.matches(password, user.getPassword());
-    }
-    
-    @Override
-    public boolean updatePassword(Long userId, String newPassword) {
-        Optional<User> userOpt = userRepository.findById(userId);
-        if (userOpt.isPresent()) {
-            User user = userOpt.get();
-            user.setPassword(passwordEncoder.encode(newPassword));
-            user.setUpdatedAt(LocalDateTime.now());
-            userRepository.save(user);
-            return true;
-        }
-        return false;
-    }
-    
-    @Override
-    public List<User> getAllAdmins() {
-        return userRepository.findByIsAdminTrue();
-    }
-    
-    @Override
-    public Optional<User> getAdminByEmail(String email) {
-        Optional<User> user = userRepository.findByEmail(email);
-        if (user.isPresent() && user.get().getIsAdmin()) {
-            return user;
-        }
-        return Optional.empty();
-    }
-    
-    @Override
-    public boolean isAdmin(Long userId) {
-        Optional<User> user = getUserById(userId);
-        return user.isPresent() && user.get().getIsAdmin();
     }
 }

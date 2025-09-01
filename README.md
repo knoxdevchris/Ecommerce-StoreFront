@@ -26,12 +26,13 @@ This Ecommerce Storefront provides users with a seamless shopping experience, sh
 
 ## Features
 
-- Browse products with rich details
-- Add to cart and checkout flow
-- User authentication (login/register)
-- Responsive design for desktop and mobile
-- Admin dashboard for product management
-- Order history and tracking
+- User authentication and authorization
+- Product catalog with categories
+- Shopping cart functionality
+- Order management system
+- Responsive web design
+- RESTful API backend
+- JWT-based security
 
 ---
 

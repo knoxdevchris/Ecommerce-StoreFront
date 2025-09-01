@@ -1,4 +1,23 @@
 {
     "java.compile.nullAnalysis.mode": "automatic",
-    "java.configuration.updateBuildConfiguration": "automatic"
+    "java.configuration.updateBuildConfiguration": "automatic", 
+
+
+    
+        "editor.inlineSuggest.enabled": false,
+        "editor.suggest.showInlineDetails": false,
+        "editor.quickSuggestions": {
+            "other": false,
+            "comments": false,
+            "strings": false
+        },
+        "editor.acceptSuggestionOnCommitCharacter": false,
+        "editor.acceptSuggestionOnEnter": "off",
+        "editor.suggestOnTriggerCharacters": false,
+        "editor.tabCompletion": "off",
+        "editor.wordBasedSuggestions": "off",
+        "editor.parameterHints.enabled": false
+    
+    
 }
+    
