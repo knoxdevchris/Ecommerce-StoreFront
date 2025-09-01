@@ -62,6 +62,7 @@ This Ecommerce Storefront provides users with a seamless shopping experience, sh
 - Node.js & npm (for frontend)
 - Java 17+ (for backend)
 - MySQL Server
+- H2 database for testing 
 
 ### Setup
 
