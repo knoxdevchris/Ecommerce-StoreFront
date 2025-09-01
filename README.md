@@ -8,6 +8,7 @@ A full-stack Ecommerce Storefront application designed for modern online shoppin
 
 - [Overview](#overview)
 - [Features](#features)
+- [Screenshots](#screenshots)
 - [Tech Stack](#tech-stack)
   - [Frontend](#frontend)
   - [Backend](#backend)
@@ -36,6 +37,22 @@ This Ecommerce Storefront provides users with a seamless shopping experience, sh
 
 ---
 
+## Demo's
+
+### Home Page
+![StoreFront Home Page](Images/StoreFrontHomePage.png)
+
+### Login Page
+![StoreFront Login Page](Images/StoreFrontLoginPage.png)
+
+### Registration Page
+![StoreFront Registration Page](Images/StoreFrontRegisterPage.png)
+
+### Demo Video
+![Video Description](path/to/video.mp4)
+
+---
+
 ## Tech Stack
 
 ### Frontend
@@ -51,7 +68,7 @@ This Ecommerce Storefront provides users with a seamless shopping experience, sh
 - **Spring Boot** — Robust backend framework for RESTful APIs
 - **Spring Data JPA** — ORM layer for database operations
 - **Hibernate** — Advanced ORM for relational mapping
-- **MySQL** — Relational database for persistent storage
+- **H2 Database** — In-memory database for development and testing
 
 ---
 
@@ -61,8 +78,7 @@ This Ecommerce Storefront provides users with a seamless shopping experience, sh
 
 - Node.js & npm (for frontend)
 - Java 17+ (for backend)
-- MySQL Server
-- H2 database for testing 
+- H2 database for development and testing
 
 ### Setup
 
@@ -76,13 +92,15 @@ npm run dev
 
 **Backend:**
 
-1. Configure your MySQL database settings in `application.properties`
+1. The application uses H2 in-memory database by default
 2. Run the Spring Boot application:
 
 ```bash
 cd backend
 ./mvnw spring-boot:run
 ```
+
+3. Access H2 console at: http://localhost:8080/h2-console
 
 ---
 
