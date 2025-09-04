@@ -1,6 +1,7 @@
 package com.storefront.backend.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -12,24 +13,44 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Product name is required")
+    @Size(min = 2, max = 100, message = "Product name must be between 2 and 100 characters")
     @Column(nullable = false)
     private String name;
 
+    @Size(max = 1000, message = "Description cannot exceed 1000 characters")
     @Column(columnDefinition = "TEXT")
     private String description;
 
+    @NotNull(message = "Price is required")
+    @DecimalMin(value = "0.01", message = "Price must be greater than 0")
+    @DecimalMax(value = "999999.99", message = "Price cannot exceed 999,999.99")
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal price;
 
+    @Size(max = 500, message = "Image URL cannot exceed 500 characters")
     private String imageUrl;
+    
+    @Size(max = 50, message = "Category cannot exceed 50 characters")
     private String category;
+    
+    @Size(max = 50, message = "Brand cannot exceed 50 characters")
     private String brand;
+    
+    @Size(max = 30, message = "Color cannot exceed 30 characters")
     private String color;
+    
+    @Size(max = 20, message = "Size cannot exceed 20 characters")
     private String size;
 
+    @NotNull(message = "Stock quantity is required")
+    @Min(value = 0, message = "Stock quantity cannot be negative")
+    @Max(value = 999999, message = "Stock quantity cannot exceed 999,999")
     @Column(nullable = false)
     private Integer stockQuantity;
 
+    @NotBlank(message = "SKU is required")
+    @Size(min = 3, max = 50, message = "SKU must be between 3 and 50 characters")
     @Column(nullable = false, unique = true)
     private String sku;
 
